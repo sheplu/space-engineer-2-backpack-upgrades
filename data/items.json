@@ -1,0 +1,526 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Backpack Upgrades",
+    "version": "0.1.0",
+    "baseGameDataVersion": "1.0.0"
+  },
+  "sources": [],
+  "notes": "Twelve permanent backpack/suit upgrades — four categories (inventory, battery, oxygen, hydrogen) × three tiers (Mk 1/2/3). All use subcategory 'upgrade' (mod-extended enum — see schemas/resource-item.schema.json). Each record carries a single capacity multiplier in `effects`; multipliers REPLACE the previous tier (not additive) — equipping Mk 3 applies 3.0×, not 3.0 × 2.0 × 1.5. Tier chaining mirrors vanilla Drill Mk 1/2/3: Mk 2 consumes 1× Mk 1, Mk 3 consumes 1× Mk 2. Mass is constant within a family (15/12/10/12 kg for inventory/battery/oxygen/hydrogen). Crafting time ramps 4/6/8s. Vanilla reference capacities the multipliers scale: Power Cell 180 000 electricity units; Oxygen Tank 1.5m 8 000 units; Hydrogen Tank 1.5m 8 000 units. IMPORTANT: the Hydrogen Upgrade scales the baseline suit H₂ tank — it does NOT scale the jetpack_fuel_tank consumable's one-shot refill amount.",
+  "resources": [
+    {
+      "id": "inventory_capacity_upgrade_mk_1",
+      "displayName": "Inventory Capacity Upgrade Mk 1",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 15,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-1 backpack upgrade. Reinforces and extends the backpack's internal frame to hold 50% more inventory (1.5× capacity). Replaced by Mk 2 when installed.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "steel_plate",
+              "qty": 3
+            },
+            {
+              "id": "construction_component",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 4
+        }
+      ],
+      "usedIn": [
+        "Inventory Capacity Upgrade Mk 2"
+      ],
+      "effects": {
+        "inventoryCapacityMultiplier": 1.5
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "inventory_capacity_upgrade_mk_2",
+      "displayName": "Inventory Capacity Upgrade Mk 2",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 15,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-2 backpack upgrade, upgraded from the Inventory Capacity Upgrade Mk 1. Doubles backpack capacity (2.0×). Replaces (does not stack with) Mk 1.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "inventory_capacity_upgrade_mk_1",
+              "qty": 1
+            },
+            {
+              "id": "steel_plate",
+              "qty": 2
+            },
+            {
+              "id": "metal_grid",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 6
+        }
+      ],
+      "usedIn": [
+        "Inventory Capacity Upgrade Mk 3"
+      ],
+      "effects": {
+        "inventoryCapacityMultiplier": 2
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "inventory_capacity_upgrade_mk_3",
+      "displayName": "Inventory Capacity Upgrade Mk 3",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 15,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-3 backpack upgrade, upgraded from the Inventory Capacity Upgrade Mk 2. Triples backpack capacity (3.0×). Top tier — replaces all lower tiers.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "inventory_capacity_upgrade_mk_2",
+              "qty": 1
+            },
+            {
+              "id": "heavy_duty_plate",
+              "qty": 2
+            },
+            {
+              "id": "stainless_steel",
+              "qty": 1
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 8
+        }
+      ],
+      "usedIn": [],
+      "effects": {
+        "inventoryCapacityMultiplier": 3
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters",
+        "usedIn-empty-no-modeled-backpack-entity"
+      ]
+    },
+    {
+      "id": "battery_upgrade_mk_1",
+      "displayName": "Battery Upgrade Mk 1",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-1 suit-battery upgrade. Increases suit energy storage by 50% (1.5× capacity). Vanilla baseline: 180 000 electricity units (Power Cell equivalent). Replaced by Mk 2 when installed.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "cobalt",
+              "qty": 2
+            },
+            {
+              "id": "copper",
+              "qty": 2
+            },
+            {
+              "id": "electronic_parts",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 4
+        }
+      ],
+      "usedIn": [
+        "Battery Upgrade Mk 2"
+      ],
+      "effects": {
+        "batteryCapacityMultiplier": 1.5
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "battery_upgrade_mk_2",
+      "displayName": "Battery Upgrade Mk 2",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-2 suit-battery upgrade, upgraded from the Battery Upgrade Mk 1. Doubles suit energy storage (2.0×). Replaces (does not stack with) Mk 1.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "battery_upgrade_mk_1",
+              "qty": 1
+            },
+            {
+              "id": "lead_bar",
+              "qty": 2
+            },
+            {
+              "id": "wire",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 6
+        }
+      ],
+      "usedIn": [
+        "Battery Upgrade Mk 3"
+      ],
+      "effects": {
+        "batteryCapacityMultiplier": 2
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "battery_upgrade_mk_3",
+      "displayName": "Battery Upgrade Mk 3",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-3 suit-battery upgrade, upgraded from the Battery Upgrade Mk 2. Triples suit energy storage (3.0×). Top tier — replaces all lower tiers.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "battery_upgrade_mk_2",
+              "qty": 1
+            },
+            {
+              "id": "silver_rod",
+              "qty": 2
+            },
+            {
+              "id": "superconductor",
+              "qty": 1
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 8
+        }
+      ],
+      "usedIn": [],
+      "effects": {
+        "batteryCapacityMultiplier": 3
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters",
+        "usedIn-empty-no-modeled-backpack-entity"
+      ]
+    },
+    {
+      "id": "oxygen_upgrade_mk_1",
+      "displayName": "Oxygen Upgrade Mk 1",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 10,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-1 suit-oxygen upgrade. Increases suit O₂ storage by 50% (1.5× capacity). Vanilla reference: Oxygen Tank 1.5m = 8 000 units. Replaced by Mk 2 when installed.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "pressure_pipe",
+              "qty": 2
+            },
+            {
+              "id": "steel_tube",
+              "qty": 2
+            },
+            {
+              "id": "compressor",
+              "qty": 1
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 4
+        }
+      ],
+      "usedIn": [
+        "Oxygen Upgrade Mk 2"
+      ],
+      "effects": {
+        "oxygenCapacityMultiplier": 1.5
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "oxygen_upgrade_mk_2",
+      "displayName": "Oxygen Upgrade Mk 2",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 10,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-2 suit-oxygen upgrade, upgraded from the Oxygen Upgrade Mk 1. Doubles suit O₂ storage (2.0×). Replaces (does not stack with) Mk 1.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "oxygen_upgrade_mk_1",
+              "qty": 1
+            },
+            {
+              "id": "pressure_pipe",
+              "qty": 2
+            },
+            {
+              "id": "stainless_steel",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 6
+        }
+      ],
+      "usedIn": [
+        "Oxygen Upgrade Mk 3"
+      ],
+      "effects": {
+        "oxygenCapacityMultiplier": 2
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "oxygen_upgrade_mk_3",
+      "displayName": "Oxygen Upgrade Mk 3",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 10,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-3 suit-oxygen upgrade, upgraded from the Oxygen Upgrade Mk 2. Triples suit O₂ storage (3.0×). Top tier — replaces all lower tiers.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "oxygen_upgrade_mk_2",
+              "qty": 1
+            },
+            {
+              "id": "advanced_compressor",
+              "qty": 1
+            },
+            {
+              "id": "heavy_duty_plate",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 8
+        }
+      ],
+      "usedIn": [],
+      "effects": {
+        "oxygenCapacityMultiplier": 3
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters",
+        "usedIn-empty-no-modeled-backpack-entity"
+      ]
+    },
+    {
+      "id": "hydrogen_upgrade_mk_1",
+      "displayName": "Hydrogen Upgrade Mk 1",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-1 suit-hydrogen upgrade. Increases baseline suit H₂ storage by 50% (1.5× capacity) — the fuel pool the jetpack draws from. Does NOT scale the Jetpack Fuel Tank consumable's one-shot refill amount. Vanilla reference: Hydrogen Tank 1.5m = 8 000 units. Replaced by Mk 2 when installed.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "pressure_pipe",
+              "qty": 2
+            },
+            {
+              "id": "steel_tube",
+              "qty": 2
+            },
+            {
+              "id": "magnesium_powder",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 4
+        }
+      ],
+      "usedIn": [
+        "Hydrogen Upgrade Mk 2"
+      ],
+      "effects": {
+        "hydrogenCapacityMultiplier": 1.5
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "hydrogen_upgrade_mk_2",
+      "displayName": "Hydrogen Upgrade Mk 2",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-2 suit-hydrogen upgrade, upgraded from the Hydrogen Upgrade Mk 1. Doubles baseline suit H₂ storage (2.0×). Does NOT scale the Jetpack Fuel Tank consumable's refill amount. Replaces (does not stack with) Mk 1.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "hydrogen_upgrade_mk_1",
+              "qty": 1
+            },
+            {
+              "id": "compressor",
+              "qty": 1
+            },
+            {
+              "id": "magnesium_bar",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 6
+        }
+      ],
+      "usedIn": [
+        "Hydrogen Upgrade Mk 3"
+      ],
+      "effects": {
+        "hydrogenCapacityMultiplier": 2
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters"
+      ]
+    },
+    {
+      "id": "hydrogen_upgrade_mk_3",
+      "displayName": "Hydrogen Upgrade Mk 3",
+      "type": "character_gear",
+      "subcategory": "upgrade",
+      "mass_kg": 12,
+      "volume_liters": null,
+      "stackable": false,
+      "divisible": false,
+      "description": "Tier-3 suit-hydrogen upgrade, upgraded from the Hydrogen Upgrade Mk 2. Triples baseline suit H₂ storage (3.0×). Does NOT scale the Jetpack Fuel Tank consumable's refill amount. Top tier — replaces all lower tiers.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Gearforge 2.5 m",
+          "ingredients": [
+            {
+              "id": "hydrogen_upgrade_mk_2",
+              "qty": 1
+            },
+            {
+              "id": "advanced_compressor",
+              "qty": 1
+            },
+            {
+              "id": "gold_thread",
+              "qty": 2
+            }
+          ],
+          "producesQty": 1,
+          "craftingTimeSeconds": 8
+        }
+      ],
+      "usedIn": [],
+      "effects": {
+        "hydrogenCapacityMultiplier": 3
+      },
+      "wiki": "https://github.com/sheplu/space-engineer-2-backpack-upgrades",
+      "dataGaps": [
+        "volume_liters",
+        "usedIn-empty-no-modeled-backpack-entity"
+      ]
+    }
+  ]
+}

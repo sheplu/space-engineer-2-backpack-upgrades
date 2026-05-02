@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Backpack Upgrades",
+    "version": "0.1.0"
+  },
+  "notes": "Adds 12 character-gear upgrade items (4 categories × 3 tiers): inventory capacity, suit battery capacity, oxygen capacity, hydrogen capacity. All crafted at the vanilla Gearforge 2.5 m. Mk 2 consumes Mk 1, Mk 3 consumes Mk 2 — matches vanilla Drill Mk 1/2/3 tier-chaining. SCHEMA CHANGE: local resource-item.schema.json extends the character-gear subcategory enum with 'upgrade' (first mod to evolve a base-game enum) and adds a structured `effects` object with category-specific capacity multipliers (1.5×/2×/3× for Mk 1/2/3; replace-not-additive). DECLARATIVE-ONLY HOOK: the Gearforge 2.5 m block record in base-game does NOT list our upgrade ids in its production.producesIds — downstream code mods reading that list won't see these upgrades, matching Forestry's fruits/resin precedent. Backpack itself is not a modeled entity in base-game data, so top-tier (Mk 3) upgrades have usedIn: [] with a corresponding dataGaps entry.",
+  "totalEntries": 12,
+  "datasets": [
+    {
+      "id": "items",
+      "path": "data/items.json",
+      "category": "character",
+      "subcategory": "upgrade",
+      "description": "Twelve backpack/suit upgrade items across four categories (inventory, battery, oxygen, hydrogen) in three tiers each (Mk 1/2/3). Each carries a structured `effects` object with a single capacity multiplier.",
+      "version": "0.1.0",
+      "entryCount": 12
+    }
+  ]
+}
