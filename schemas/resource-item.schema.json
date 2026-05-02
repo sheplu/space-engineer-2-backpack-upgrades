@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheplu/space-engineer-2-backpack-upgrades/main/schemas/resource-item.schema.json",
+  "title": "SE2 Backpack Upgrades — Craftable Item Record (extends base-game resource-item schema)",
+  "description": "Record shape for craftable non-block items. This mod EXTENDS the base-game schema with two changes: (1) subcategory enum adds 'upgrade' for permanent suit/backpack fittings; (2) a new optional `effects` object carries machine-readable capacity multipliers on character_gear upgrades. All other fields are unchanged from the base-game schema.",
+  "type": "object",
+  "required": [
+    "id",
+    "displayName",
+    "type",
+    "mass_kg",
+    "volume_liters",
+    "stackable",
+    "divisible",
+    "description",
+    "gameStatus",
+    "wiki",
+    "dataGaps"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "displayName": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "refinery_product",
+        "simple_component",
+        "complex_component",
+        "high_tech_component",
+        "character_gear",
+        "ammunition",
+        "power_cell"
+      ]
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "Present on character-gear records. Values: tool, weapon, consumable, upgrade (upgrade = mod-added, permanent suit/backpack fitting).",
+      "enum": ["tool", "weapon", "consumable", "upgrade"]
+    },
+    "mass_kg": { "type": ["number", "null"], "minimum": 0 },
+    "volume_liters": { "type": ["number", "null"], "minimum": 0 },
+    "stackable": { "type": "boolean" },
+    "divisible": { "type": "boolean" },
+    "description": { "type": ["string", "null"] },
+    "gameStatus": {
+      "type": "string",
+      "enum": ["active", "disabled", "planned"]
+    },
+    "recipes": {
+      "type": "array",
+      "description": "Production paths. Items can have multiple recipes (e.g. Smelter + Backpack).",
+      "items": {
+        "type": "object",
+        "required": ["producedBy", "ingredients", "producesQty", "craftingTimeSeconds"],
+        "properties": {
+          "producedBy": { "type": "string" },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "qty"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+                "qty": { "type": "number", "minimum": 0 }
+              }
+            }
+          },
+          "producesQty": { "type": ["number", "null"], "minimum": 0 },
+          "craftingTimeSeconds": { "type": ["number", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "usedIn": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Downstream recipe names or block names that consume this item."
+    },
+    "usedBy": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Present on ammunition records — block ids of weapons that consume this ammo."
+    },
+    "roundsPerUnit": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Present on ammunition records — projectiles per inventory stack."
+    },
+    "capacity": {
+      "type": "object",
+      "description": "Present on power_cell records.",
+      "required": ["value", "unitAsPublished"],
+      "properties": {
+        "value": { "type": ["number", "null"] },
+        "unitAsPublished": { "type": ["string", "null"] }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "description": "Present on character_gear records with subcategory 'upgrade'. Machine-readable stat multipliers applied to the player's suit/backpack when equipped. Exactly one category-specific multiplier is set per upgrade; values are multiplicative (1.5 = +50%) and REPLACE the previous tier (not additive).",
+      "properties": {
+        "inventoryCapacityMultiplier": { "type": "number", "exclusiveMinimum": 1 },
+        "batteryCapacityMultiplier":   { "type": "number", "exclusiveMinimum": 1 },
+        "oxygenCapacityMultiplier":    { "type": "number", "exclusiveMinimum": 1 },
+        "hydrogenCapacityMultiplier":  { "type": "number", "exclusiveMinimum": 1 }
+      },
+      "minProperties": 1,
+      "maxProperties": 1
+    },
+    "producedBy": {
+      "type": ["string", "null"],
+      "description": "Free-form producer note when the item isn't directly craftable (e.g. power cells). null when unknown."
+    },
+    "wiki": { "type": "string", "format": "uri" },
+    "dataGaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

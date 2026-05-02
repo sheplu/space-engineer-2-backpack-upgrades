@@ -1,0 +1,18 @@
+{
+  "name": "space-engineer-2-backpack-upgrades",
+  "version": "0.1.0",
+  "description": "Backpack Upgrades — a Space Engineers 2 mod dataset adding 12 permanent character-gear upgrades (inventory, battery, oxygen, hydrogen capacity — 3 tiers each). First mod to extend the base-game character-gear subcategory enum with 'upgrade' and introduce a structured `effects` object with capacity multipliers.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "check": "npm run validate"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}
